@@ -1,13 +1,10 @@
 #!/bin/bash
-echo $1
-echo $2
-echo $3
-echo $4
-echo $5
 case "$1" in 
+help)
+  docker run -t -i -e /root/.bashrc ogofen/rhel-7.1-with_art /bin/sh -c "ArtRunner --help"
+  ;;
 run) 
-  docker run -t -i -e /root/.bashrc ogofen/rhel-7.1-with_art /bin/sh -c "source /root/.bashrc; ./art/run.py ${@:2}"
-  return 0 
+  docker run -t -i -e /root/.bashrc ogofen/rhel-7.1-with_art /bin/sh -c "source /root/.bashrc;ArtRunner ${@:2}"
   ;; 
 upload-conf)
   con=`docker inspect ogofen/rhel-7.1-with_art | grep \"Container\": | gawk {'print $2'}`
