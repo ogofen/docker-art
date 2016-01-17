@@ -1,0 +1,3 @@
+======================= Docker-Art =============================
+In order to download the docker image run:
+"git pull ogofen/rhel-7.1-with_art"
