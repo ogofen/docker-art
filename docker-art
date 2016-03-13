@@ -3,13 +3,13 @@ case "$1" in
 help)
   docker run -t -i -e /root/.bashrc ogofen/rhel-7.1-with_art /bin/sh -c "ArtRunner --help"
   ;;
-run) 
+ArtRunner) 
   docker run -t -i -e /root/.bashrc ogofen/rhel-7.1-with_art /bin/sh -c "source /root/.bashrc;ArtRunner ${@:2}"
   ;; 
-upload-conf)
+update)
+  
+  docker run -t -i -e /root/.bashrc ogofen/rhel-7.1-with_art /bin/bash -c "source /root/.bashrc;/git/git_art_update"
   con=`docker inspect ogofen/rhel-7.1-with_art | grep \"Container\": | gawk {'print $2'}`
-  docker cp $2 ${con:1:-2}:/git/jenkins/qe/conf/
   docker commit ${con:1:-2} ogofen/rhel-7.1-with_art
-  echo "file $2 uploaded"
   ;;
 esac

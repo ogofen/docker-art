@@ -1,0 +1,9 @@
+#!/bin/bash
+is_docker=`rpm -qa | grep "docker"`
+if ! [ "$is_docker" ]
+then
+echo "please install and start docker.service before running this installation"
+fi
+#sudo docker pull ogofen/rhel-7.1-with_art
+sudo cp docker-art /usr/bin/
+sudo cp docker-art_completion /etc/bash_completion.d/

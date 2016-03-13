@@ -1,0 +1,27 @@
+_docker-art()
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    command="${COMP_WORDS[1]}"
+    opts="help upload-conf ArtRunner"
+    args="--ge --team --job --env --tier --hosts --engine --engine_api --cmd_only --storage_type"
+    case "${prev}" in
+    docker-art)
+      COMPREPLY=( $(compgen -W "$opts" ${cur}) )
+      return 0
+      ;;
+	  update)
+      return 0
+      ;;
+   esac
+   case "${command}" in
+    ArtRunner) 
+      COMPREPLY=( $(compgen -W "$args" -- ${cur}) )
+      return 0
+      ;;
+      esac
+
+}
+complete -F _docker-art docker-art
